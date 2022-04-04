@@ -1,4 +1,4 @@
-# quick_dos
+# Quick DOS
 Quick and simple program to DOS for stress testing purposes.
 
 ```
