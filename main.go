@@ -33,12 +33,12 @@ func (c *Counter) Breakdown() {
 
 func main() {
     numRequests := flag.Int("n", 1000, "Number of requests to fire.")
-    host := flag.String("d", "", "Host you'd like to DOS.")
+    url := flag.String("u", "", "URL you'd like to DOS.")
 
     flag.Parse()
 
-    if len(*host) == 0 {
-        fmt.Println("-d is required.")
+    if len(*url) == 0 {
+        fmt.Println("-u is required.")
         return
     }
 
@@ -53,7 +53,7 @@ func main() {
         go func() {
             defer wg.Done()
 
-            resp, err := http.Get(*host)
+            resp, err := http.Get(*url)
 
             if err != nil {
                 atomic.AddUint64(&failedRequests, 1)
@@ -67,7 +67,7 @@ func main() {
 
     wg.Wait()
 
-    fmt.Println("DOSed ", *host, " with ", *numRequests, " requests.")
+    fmt.Println("DOSed ", *url, " with ", *numRequests, " requests.")
     fmt.Println("---")
     fmt.Println("Breakdown:")
     counter.Breakdown()
