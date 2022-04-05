@@ -9,8 +9,8 @@ import (
 )
 
 type Counter struct {
-	mutex sync.Mutex
-	codes  map[int]int
+    mutex sync.Mutex
+    codes  map[int]int
 }
 
 func (c *Counter) Inc(code int) {
